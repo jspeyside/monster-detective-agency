@@ -1,5 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://5puolyaq1rb3"]
+[gd_scene load_steps=10 format=4 uid="uid://5puolyaq1rb3"]
 
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_1w21u"]
+[ext_resource type="Script" path="res://scenes/map.gd" id="1_d28mf"]
 [ext_resource type="PackedScene" uid="uid://c8fa40xde2wu6" path="res://scenes/ellie.tscn" id="2_avxw8"]
 [ext_resource type="Texture2D" uid="uid://bqchva6dcnudj" path="res://art/tilesets/11_Camping_32x32.png" id="3_3yo6x"]
 [ext_resource type="PackedScene" uid="uid://cm0yo7nxcdhmr" path="res://scenes/ezra.tscn" id="3_6wgpi"]
@@ -4442,8 +4444,10 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_081fs")
 
 [node name="world" type="Node2D"]
+script = ExtResource("1_1w21u")
 
 [node name="map" type="Node2D" parent="."]
+script = ExtResource("1_d28mf")
 
 [node name="ground" type="TileMapLayer" parent="map"]
 position = Vector2(1, 0)
@@ -4455,7 +4459,8 @@ tile_map_data = PackedByteArray("AAABAAQAAAASAA8AAAAFAAAAAAAAAD8AAAAFAAEAAAAAAEA
 tile_set = SubResource("TileSet_3rls2")
 
 [node name="ellie" parent="." instance=ExtResource("2_avxw8")]
-position = Vector2(21, 161)
+z_index = 1
+position = Vector2(22, 159)
 
 [node name="ezra" parent="." instance=ExtResource("3_6wgpi")]
 position = Vector2(-17, 163)

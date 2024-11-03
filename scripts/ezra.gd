@@ -3,9 +3,44 @@ extends CharacterBody2D
 const speed = 100
 var current_direction = "down"
 
+var party_leader: Node
+var tracking_index = 10
+
 
 func _physics_process(delta: float) -> void:
 	player_movement(delta)
+
+func follow(party_leader: Node, tracking_index: int):
+	self.party_leader = party_leader
+	self.tracking_index = tracking_index
+	party_leader.connect("history_updated", on_leader_history_updated)
+
+
+func on_leader_history_updated(position_history):
+	var past_position
+	if (position_history.size() < tracking_index + 1):
+		return
+		
+	var current_x = position.x
+	var current_y = position.y
+	past_position = position_history[tracking_index]
+	
+	var animation = "idle_down"
+	if(past_position["x"] > position.x):
+		animation = "walk_right"
+	elif(past_position["x"] < position.x):
+		animation = "walk_left"
+	elif(past_position["y"] > position.y):
+		animation = "walk_down"
+	elif(past_position["y"] < position.y):
+		animation = "walk_up"
+	else:
+		animation = "idle_" + past_position["direction"]
+	current_direction = past_position["direction"]
+		
+	position = Vector2(past_position["x"], past_position["y"])
+	
+	play_animation(animation)
 
 
 func play_animation(animation):
@@ -14,29 +49,5 @@ func play_animation(animation):
 
 
 func player_movement(delta):
-	if Input.is_action_pressed("ui_right"):
-		current_direction = "right"
-		play_animation("walk_right")
-		velocity.x = speed
-		velocity.y = 0
-	elif Input.is_action_pressed("ui_left"):
-		current_direction = "left"
-		play_animation("walk_left")
-		velocity.x = -speed
-		velocity.y = 0
-	elif Input.is_action_pressed("ui_down"):
-		current_direction = "down"
-		play_animation("walk_down")
-		velocity.x = 0
-		velocity.y = speed
-	elif Input.is_action_pressed("ui_up"):
-		current_direction = "up"
-		play_animation("walk_up")
-		velocity.x = 0
-		velocity.y = -speed
-	else:
+	if not (Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right")  or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_up")):
 		play_animation("idle_" + current_direction)
-		velocity.x = 0
-		velocity.y = 0
-
-	move_and_slide()

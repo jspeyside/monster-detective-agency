@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://c8fa40xde2wu6"]
+[gd_scene load_steps=101 format=3 uid="uid://c8fa40xde2wu6"]
 
 [ext_resource type="Script" path="res://scripts/ellie.gd" id="1_hvr80"]
 [ext_resource type="Texture2D" uid="uid://etlulw6oyjqh" path="res://art/characters/ellie_32x32.png" id="2_wjp2x"]
@@ -738,12 +738,17 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5hv64"]
+radius = 8.0
+
 [node name="ellie" type="CharacterBody2D"]
 script = ExtResource("1_hvr80")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sltvb")
 animation = &"idle_down"
 frame_progress = 0.211908
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 21)
+shape = SubResource("CircleShape2D_5hv64")

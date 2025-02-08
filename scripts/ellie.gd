@@ -15,7 +15,8 @@ func _physics_process(delta: float) -> void:
 	
 	if character_moved:
 		add_position_to_history()
-		emit_signal("history_updated", position_history)
+		history_updated.emit(position_history)
+		#emit_signal(history_updated., position_history)
 
 
 func add_position_to_history():
@@ -32,7 +33,7 @@ func play_animation(animation):
 	sprite.play(animation)
 
 
-func player_movement(delta) -> bool:
+func player_movement(_delta) -> bool:
 	var character_moved = true
 	if Input.is_action_pressed("ui_right"):
 		current_direction = "right"

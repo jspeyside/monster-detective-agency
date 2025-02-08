@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://5puolyaq1rb3"]
 
-[ext_resource type="Script" path="res://scenes/world.gd" id="1_1w21u"]
-[ext_resource type="Script" path="res://scenes/map.gd" id="1_d28mf"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_1w21u"]
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_d28mf"]
 [ext_resource type="PackedScene" uid="uid://c8fa40xde2wu6" path="res://scenes/ellie.tscn" id="2_avxw8"]
 [ext_resource type="Texture2D" uid="uid://bqchva6dcnudj" path="res://art/tilesets/11_Camping_32x32.png" id="3_3yo6x"]
 [ext_resource type="PackedScene" uid="uid://cm0yo7nxcdhmr" path="res://scenes/ezra.tscn" id="3_6wgpi"]
